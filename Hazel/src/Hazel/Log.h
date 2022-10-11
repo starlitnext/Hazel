@@ -3,6 +3,9 @@
 #include "Core.h"
 #include "spdlog/spdlog.h"
 
+// using stream output
+#include "spdlog/fmt/ostr.h"
+
 namespace Hazel {
 
 	class HAZEL_API Log
