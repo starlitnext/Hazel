@@ -23,7 +23,7 @@ namespace Hazel {
 		// dispatch backforwards
 		std::vector<Layer*> m_Layers;
 		// before m_LayerInsert is common layers, after m_LayerInsert is overlays
-		std::vector<Layer*>::iterator m_LayerInsert;
+		unsigned int m_LayerInsertIndex = 0;
 	};
 
 }
