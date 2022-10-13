@@ -59,6 +59,7 @@ namespace Hazel {
 	{
 		while (m_Running)
 		{
+			// TODO OpenGL specific
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
