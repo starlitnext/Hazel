@@ -1,5 +1,6 @@
 #include "hzpch.h"
 
+// TODO using OpenGL&GLFW specific, not common
 #include <glad/glad.h>
 
 #define IMGUI_IMPL_OPENGL_LOADER_CUSTOM
