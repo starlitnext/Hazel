@@ -1,6 +1,8 @@
 #include "hzpch.h"
 #include "Hazel.h"
 
+#include <imgui.h>
+
 /*
 // Test glm
 #include <glm/vec3.hpp> // glm::vec3
@@ -42,6 +44,13 @@ public:
 			Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&)event;
 			HZ_TRACE("{0}(dispatch)", (char)e.GetKeyCode());
 		}
+	}
+
+	void OnImGuiRender()
+	{
+		ImGui::Begin("Text");
+		ImGui::Text("Hello World!");
+		ImGui::End();
 	}
 };
 
