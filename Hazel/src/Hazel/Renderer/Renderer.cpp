@@ -4,6 +4,23 @@
 
 namespace Hazel {
 
-	RenderAPI Renderer::s_RenderAPI = RenderAPI::OpenGL;
+
+	void Renderer::BeginScene()
+	{
+		// TODO setup camera, light and so on...
+	}
+
+	void Renderer::EndScene()
+	{
+
+	}
+
+	void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+	{
+		// draw call
+		// TODO submit to other thread
+		vertexArray->Bind();
+		RenderCommand::DrawIndexed(vertexArray);
+	}
 
 }
