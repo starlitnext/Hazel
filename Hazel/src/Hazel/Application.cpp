@@ -4,6 +4,8 @@
 #include "Hazel/Log.h"
 #include "Hazel/Input.h"
 
+#include <GLFW/glfw3.h>
+
 namespace Hazel {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -55,12 +57,16 @@ namespace Hazel {
 
 	void Application::Run()
 	{
-		// TODO delta time
 		while (m_Running)
 		{
+			// TODO Platform::GetTime()
+			float time = glfwGetTime();
+			TimeStep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			// render forwards
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
