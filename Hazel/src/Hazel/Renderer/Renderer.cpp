@@ -1,7 +1,6 @@
 #include "hzpch.h"
 
 #include "Hazel/Renderer/Renderer.h"
-#include "Platform/OpenGL/OpenGLShader.h"
 #include "Hazel/Renderer/Renderer2D.h"
 
 namespace Hazel {
@@ -21,7 +20,6 @@ namespace Hazel {
 
 	void Renderer::BeginScene(const OrthographicCamera& camera)
 	{
-		// TODO setup camera, light and so on...
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
@@ -37,8 +35,8 @@ namespace Hazel {
 		// draw call
 
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4("u_Transform", transfom);
+		shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->SetMat4("u_Transform", transfom);
 
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
