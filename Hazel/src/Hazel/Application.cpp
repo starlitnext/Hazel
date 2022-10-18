@@ -63,7 +63,7 @@ namespace Hazel {
 		while (m_Running)
 		{
 			// TODO Platform::GetTime()
-			float time = glfwGetTime();
+			float time = (float)glfwGetTime();
 			TimeStep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 

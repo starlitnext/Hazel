@@ -2,7 +2,7 @@
 
 #include "Hazel/Core.h"
 #include "Hazel/Events/Event.h"
-#include "Hazel/Core/TImestep.h"
+#include "Hazel/Core/Timestep.h"
 
 namespace Hazel {
 

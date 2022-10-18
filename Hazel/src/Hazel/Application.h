@@ -8,7 +8,7 @@
 #include "Hazel/LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
 
-#include "Hazel/Core/TImestep.h"
+#include "Hazel/Core/Timestep.h"
 
 namespace Hazel {
 

@@ -5,11 +5,12 @@
 #include "Hazel/Layer.h"
 #include "Hazel/Application.h"
 
-#include "Hazel/Core/TImestep.h"
+#include "Hazel/Core/Timestep.h"
 
 #include "Hazel/Input.h"
 #include "Hazel/KeyCodes.h"
 #include "Hazel/MouseButtonCodes.h"
+#include "Hazel/OrthographicCameraController.h"
 
 #include "Hazel/ImGui/ImGuiLayer.h"
 
