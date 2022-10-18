@@ -54,7 +54,7 @@ namespace Hazel {
 		m_Context->Init();
 		// so that m_Data can get at callbacks with glfwGetWindowUserPointer
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		SetVSync(true);
+		SetVSync(false);
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
