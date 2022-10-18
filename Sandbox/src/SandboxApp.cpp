@@ -29,7 +29,7 @@ public:
 			0.0f,  0.5f,  0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Hazel::VertexBuffer::Create(vertices, sizeof(vertices));
 		Hazel::BufferLayout layout = {
 			{ Hazel::ShaderDataType::Float3, "a_Position"},
 			{ Hazel::ShaderDataType::Float4, "a_Color"}
@@ -40,7 +40,7 @@ public:
 		// Add IndexBuffer
 		uint32_t indicies[3] = { 0, 1, 2 };
 		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Hazel::IndexBuffer::Create(indicies, sizeof(vertices) / sizeof(uint32_t)));
+		indexBuffer = Hazel::IndexBuffer::Create(indicies, sizeof(vertices) / sizeof(uint32_t));
 		m_VertexArray->AddIndexBuffer(indexBuffer);
 
 		float squareVertices[5 * 4] = {
@@ -51,7 +51,7 @@ public:
 		};
 		m_SquareVA = Hazel::VertexArray::Create();
 		Hazel::Ref<Hazel::VertexBuffer> squareVB;
-		squareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		Hazel::BufferLayout squareLayout = {
 			{ Hazel::ShaderDataType::Float3, "a_Position"},
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord"},
@@ -61,7 +61,7 @@ public:
 		
 		uint32_t squareIndicies[6] = { 0, 1, 2, 2, 3, 0 };
 		Hazel::Ref<Hazel::IndexBuffer> squareIB;
-		squareIB.reset(Hazel::IndexBuffer::Create(squareIndicies, sizeof(squareIndicies) / sizeof(uint32_t)));
+		squareIB = Hazel::IndexBuffer::Create(squareIndicies, sizeof(squareIndicies) / sizeof(uint32_t));
 		m_SquareVA->AddIndexBuffer(squareIB);
 
 		// Prepare Shader

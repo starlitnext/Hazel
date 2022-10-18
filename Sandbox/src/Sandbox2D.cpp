@@ -24,7 +24,7 @@ void Sandbox2D::OnAttach()
 	};
 	
 	Hazel::Ref<Hazel::VertexBuffer> squareVB;
-	squareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+	squareVB = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 	Hazel::BufferLayout squareLayout = {
 		{ Hazel::ShaderDataType::Float3, "a_Position"},
 		{ Hazel::ShaderDataType::Float2, "a_TexCoord"},
@@ -34,7 +34,7 @@ void Sandbox2D::OnAttach()
 
 	uint32_t squareIndicies[6] = { 0, 1, 2, 2, 3, 0 };
 	Hazel::Ref<Hazel::IndexBuffer> squareIB;
-	squareIB.reset(Hazel::IndexBuffer::Create(squareIndicies, sizeof(squareIndicies) / sizeof(uint32_t)));
+	squareIB = Hazel::IndexBuffer::Create(squareIndicies, sizeof(squareIndicies) / sizeof(uint32_t));
 	m_SquareVA->AddIndexBuffer(squareIB);
 
 	m_FlatColorShader = Hazel::Shader::Create("assets/shaders/FlatColor.glsl");
