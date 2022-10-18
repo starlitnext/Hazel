@@ -1,13 +1,15 @@
-#include "hzpch.h"
-#include "Hazel.h"
+#include <Hazel.h>
+#include <Hazel/Core/EntryPoint.h>
 
-#include "Platform/OpenGL/OpenGLShader.h"
-#include "Platform/OpenGL/OpenGLTexture.h"
+#include <Platform/OpenGL/OpenGLShader.h>
+#include <Platform/OpenGL/OpenGLTexture.h>
 
 #include <imgui.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Hazel::Layer
 {
@@ -18,7 +20,7 @@ public:
 		m_SquarePosition(0.0f)
 	{
 		// Create VertexArray
-		m_VertexArray.reset(Hazel::VertexArray::Create());
+		m_VertexArray = Hazel::VertexArray::Create();
 
 		// Add VertexBuffer
 		float vertices[3 * 7] = {
@@ -47,7 +49,7 @@ public:
 			 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
 			-0.5f,  0.5f,  0.0f, 0.0f, 1.0f
 		};
-		m_SquareVA.reset(Hazel::VertexArray::Create());
+		m_SquareVA = Hazel::VertexArray::Create();
 		Hazel::Ref<Hazel::VertexBuffer> squareVB;
 		squareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		Hazel::BufferLayout squareLayout = {
@@ -231,7 +233,7 @@ class SandboxApp : public Hazel::Application
 public:
 	SandboxApp()
 	{
-		PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~SandboxApp()
