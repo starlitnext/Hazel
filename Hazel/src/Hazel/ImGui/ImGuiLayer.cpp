@@ -1,6 +1,6 @@
 #include "hzpch.h"
 #include "ImGuiLayer.h"
-#include "Hazel/Application.h"
+#include "Hazel/Core/Application.h"
 
 // TEMPORARY
 #include <imgui.h>
