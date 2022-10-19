@@ -9,6 +9,8 @@ namespace Hazel {
 
 	void Renderer::Init()
 	{
+		HZ_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
@@ -28,12 +30,16 @@ namespace Hazel {
 
 	}
 
-	void Renderer::Submit( const Ref<Shader>& shader, 
+	void Renderer::Shutdown()
+	{
+		Renderer2D::ShutDown();
+	}
+
+	void Renderer::Submit(const Ref<Shader>& shader,
 		const Ref<VertexArray>& vertexArray, 
 		const glm::mat4 transfom)
 	{
 		// draw call
-
 		shader->Bind();
 		shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		shader->SetMat4("u_Transform", transfom);
