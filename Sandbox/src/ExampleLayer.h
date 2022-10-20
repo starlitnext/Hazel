@@ -40,7 +40,7 @@ public:
 		uint32_t indicies[3] = { 0, 1, 2 };
 		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;
 		indexBuffer = Hazel::IndexBuffer::Create(indicies, sizeof(vertices) / sizeof(uint32_t));
-		m_VertexArray->AddIndexBuffer(indexBuffer);
+		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,
@@ -61,7 +61,7 @@ public:
 		uint32_t squareIndicies[6] = { 0, 1, 2, 2, 3, 0 };
 		Hazel::Ref<Hazel::IndexBuffer> squareIB;
 		squareIB = Hazel::IndexBuffer::Create(squareIndicies, sizeof(squareIndicies) / sizeof(uint32_t));
-		m_SquareVA->AddIndexBuffer(squareIB);
+		m_SquareVA->SetIndexBuffer(squareIB);
 
 		// Prepare Shader
 		std::string vertexSrc = R"(
