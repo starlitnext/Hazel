@@ -23,6 +23,11 @@ void Sandbox2D::OnAttach()
 	m_TextureBarrel = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 1, 11 }, { 128, 128 });
 	m_TextureTree = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, { 1, 2 });
 
+	Hazel::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = Hazel::Framebuffer::Create(fbSpec);
+
 	m_Particle.Position = { 0.0f, 0.0f };
 	m_Particle.Velocity = { 0.0f, 0.0f }, m_Particle.VelocityVariation = { 3.0f, 1.0f };
 	m_Particle.SizeBegin = 0.5f, m_Particle.SizeEnd = 0.0f, m_Particle.SizeVariation = 0.3f;
@@ -65,6 +70,7 @@ void Sandbox2D::OnUpdate(Hazel::TimeStep ts)
 	Hazel::Renderer2D::ResetStats();
 	{
 		HZ_PROFILE_SCOPE("Renderer Prep");
+		m_Framebuffer->Bind();
 		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Hazel::RenderCommand::Clear();
 	}
@@ -105,6 +111,7 @@ void Sandbox2D::OnUpdate(Hazel::TimeStep ts)
 		Hazel::Renderer2D::DrawQuad({ 1.0f, 0.0f, 0.5f }, { 1.0f, 1.0f }, m_TextureBarrel);
 		Hazel::Renderer2D::DrawQuad({ -1.0f, 0.0f, 0.5f }, { 1.0f, 2.0f }, m_TextureTree);
 		Hazel::Renderer2D::EndScene();
+		m_Framebuffer->UnBind();
 	}
 }
 
@@ -187,8 +194,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 640.0f, 360.0f });
 
 		ImGui::End();
 
@@ -207,8 +214,8 @@ void Sandbox2D::OnImGuiRender()
 
 		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckboardTexture->GetRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((void*)textureID, ImVec2{ 640.0f, 360.0f });
 
 		ImGui::End();
 	}
