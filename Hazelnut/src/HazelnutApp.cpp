@@ -5,16 +5,16 @@
 
 namespace Hazel {
 
-	class HazelEditorApp : public Application
+	class HazelnutApp : public Application
 	{
 	public:
-		HazelEditorApp(const std::string& name) :
+		HazelnutApp(const std::string& name) :
 			Application(name)
 		{
 			PushLayer(new EditorLayer());
 		}
 
-		~HazelEditorApp()
+		~HazelnutApp()
 		{
 
 		}
@@ -23,7 +23,7 @@ namespace Hazel {
 
 	Application* CreateApplication()
 	{
-		return new HazelEditorApp("Hazel Editor");
+		return new HazelnutApp("Hazelnut");
 	}
 
 }
