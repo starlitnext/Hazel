@@ -7,6 +7,8 @@ namespace Hazel {
 	class HAZEL_API KeyEvent : public Event
 	{
 	public:
+		virtual ~KeyEvent() = default;
+
 		inline int GetKeyCode() const { return m_KeyCode; }
 		inline int GetMods() const { return m_Mods; }
 
