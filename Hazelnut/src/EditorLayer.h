@@ -18,17 +18,12 @@ namespace Hazel {
 	private:
 		OrthographicCameraController m_CameraController;
 
-		Ref<Shader> m_FlatColorShader;
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 		Ref<Texture2D> m_CheckboardTexture;
 
-		Ref<Texture2D> m_SpriteSheet;
-		Ref<SubTexture2D> m_TextureStairs;
-		Ref<SubTexture2D> m_TextureBarrel;
-		Ref<SubTexture2D> m_TextureTree;
-
 		Ref<Framebuffer> m_Framebuffer;
 
+		glm::vec2 m_ViewportSize = { 0, 0 };
 	};
 
 }
