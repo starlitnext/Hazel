@@ -61,11 +61,12 @@ namespace Hazel {
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 		// dispatch event backwards
+		// overlay(such as m_ImGuiLayer) will first dispatched
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
-			(*--it)->OnEvent(e);
-			if (e.Handled())
+			if (e.Handled)
 				break;
+			(*--it)->OnEvent(e);
 		}
 	}
 
