@@ -17,6 +17,11 @@ startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Samples
+group "Samples"
+	include "Samples"
+group ""
+
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Hazel/vendor/GLFW/include"
@@ -215,3 +220,4 @@ project "Hazelnut"
 		defines "HZ_DIST"
 		runtime "Release"
 		optimize "on"
+
