@@ -4,8 +4,8 @@
 #include "Hazel/Core/Log.h"
 #include "Hazel/Core/Input.h"
 #include "Hazel/Renderer/Renderer.h"
+#include "Hazel/Utils/PlatformUtils.h"
 
-#include <GLFW/glfw3.h>
 
 namespace Hazel {
 
@@ -78,8 +78,7 @@ namespace Hazel {
 		{
 			HZ_PROFILE_SCOPE("RunLoop");
 
-			// TODO Platform::GetTime()
-			float time = (float)glfwGetTime();
+			float time = Time::GetTime();
 			TimeStep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
