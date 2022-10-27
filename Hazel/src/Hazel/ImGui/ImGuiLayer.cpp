@@ -2,8 +2,9 @@
 #include "ImGuiLayer.h"
 #include "Hazel/Core/Application.h"
 
-// TEMPORARY
 #include <imgui.h>
+
+// TEMPORARY
 #include <GLFW/glfw3.h>
 #include "backends/imgui_impl_opengl3.h"
 #include "backends/imgui_impl_glfw.h"
