@@ -1,3 +1,10 @@
+
+/**
+ * Samples of Directx11
+ * https://www.rastertek.com/dx11tut04.html
+ * 
+ */
+
 #include "Application.h"
 
 class D3D11App : public Application
