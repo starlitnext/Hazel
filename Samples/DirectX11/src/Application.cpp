@@ -38,7 +38,13 @@ bool Application::Initialize()
 
 void Application::ShutDown()
 {
+	delete m_Input;
+	m_Input = nullptr;
+
 	m_Graphics->ShutDown();
+	delete m_Graphics;
+	m_Graphics = nullptr;
+
 	ShutDownWindows();
 }
 
@@ -150,9 +156,9 @@ void Application::InitializeWindows(uint32_t& width, uint32_t& height)
 	}
 	else
 	{
-		// If windowed then set it to 800x600 resolution.
-		width = 800;
-		height = 600;
+		// If windowed then set it to 1280*720 resolution.
+		width = 1280;
+		height = 720;
 
 		// Place the window in the middle of the screen.
 		posX = (GetSystemMetrics(SM_CXSCREEN) - width) / 2;
@@ -161,23 +167,17 @@ void Application::InitializeWindows(uint32_t& width, uint32_t& height)
 
 	// Create the window with the screen settings and get the handle to it.
 	m_hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_ApplicationName, m_ApplicationName,
-		WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
+		WS_OVERLAPPEDWINDOW,
 		posX, posY, width, height, NULL, NULL, m_hInstance, NULL);
 
 	// Bring the window up on the screen and set it as main focus.
 	::ShowWindow(m_hWnd, SW_SHOW);
 	::SetForegroundWindow(m_hWnd);
 	::SetFocus(m_hWnd);
-
-	// Hide the mouse cursor.
-	::ShowCursor(false);
 }
 
 void Application::ShutDownWindows()
 {
-	// Show the mouse cursor.
-	::ShowCursor(true);
-
 	// Fix the display settings if leaving full screen mode.
 	if (FULL_SCREEN)
 	{
