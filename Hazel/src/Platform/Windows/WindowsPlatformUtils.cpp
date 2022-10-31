@@ -8,7 +8,7 @@ namespace Hazel {
 
 	float Time::GetTime()
 	{
-		return glfwGetTime();
+		return (float)glfwGetTime();
 	}
 
 }
