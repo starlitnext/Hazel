@@ -8,6 +8,7 @@ namespace Hazel {
 	{
 	public:
 		SceneCamera();
+		SceneCamera(const glm::mat4& projection);
 		virtual ~SceneCamera() = default;
 
 		void SetOrthographic(float size, float nearClip, float farClip);

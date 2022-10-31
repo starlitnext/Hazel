@@ -10,6 +10,12 @@ namespace Hazel {
 
 	}
 
+	SceneCamera::SceneCamera(const glm::mat4& projection) :
+		Camera(projection)
+	{
+
+	}
+
 	void SceneCamera::SetOrthographic(float size, float nearClip, float farClip)
 	{
 		m_OrthographicSize = size;
