@@ -25,10 +25,12 @@ namespace Hazel {
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
-		m_Scene = CreateRef<Scene>();
-		auto square = m_Scene->CreateEntity();
-		m_Scene->Reg().emplace<TransformComponent>(square);
-		m_Scene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
+		m_ActiveScene = CreateRef<Scene>();
+
+		// Entity
+		auto square = m_ActiveScene->CreateEntity("Green Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
 		m_SquareEntity = square;
 	}
 
@@ -62,7 +64,7 @@ namespace Hazel {
 			HZ_PROFILE_SCOPE("Renderer Draw");
 			Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-			m_Scene->OnUpdate(ts);
+			m_ActiveScene->OnUpdate(ts);
 
 			Renderer2D::EndScene();
 
@@ -143,8 +145,15 @@ namespace Hazel {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		auto& squareColor = m_Scene->Reg().get<SpriteRendererComponent>(m_SquareEntity).Color;
-		ImGui::ColorEdit3("Square Color", glm::value_ptr(squareColor));
+		if (m_SquareEntity)
+		{
+			ImGui::Separator();
+			auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
+			ImGui::Text("%s", tag.c_str());
+			auto& squareColor =m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit3("Square Color", glm::value_ptr(squareColor));
+			ImGui::Separator();
+		}
 
 		ImGui::End();
 

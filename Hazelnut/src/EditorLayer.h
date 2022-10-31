@@ -25,8 +25,8 @@ namespace Hazel {
 
 		glm::vec2 m_ViewportSize = { 0, 0 };
 
-		Ref<Scene> m_Scene;
-		entt::entity m_SquareEntity;
+		Ref<Scene> m_ActiveScene;
+		Entity m_SquareEntity;
 
 		bool m_ViewportFocused = false;
 		bool m_ViewPortHovered = false;
