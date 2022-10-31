@@ -27,8 +27,8 @@ project "Win32Window"
 		optimize "on"
 
 
-project "DirectX11"
-	location "DirectX11"
+project "dx11s3tut04"
+	location "dx11s3tut04"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
