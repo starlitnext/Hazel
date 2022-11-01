@@ -59,6 +59,8 @@ namespace Hazel {
 
 	void SceneHierarchyPanel::DrawComponents(Entity entity)
 	{
+		// TODO use template such as DrawComponent<CameraComponent>("Camera", []() {})
+
 		if (entity.HasComponent<TagComponent>())
 		{
 			auto& tag = entity.GetComponent<TagComponent>().Tag;
@@ -148,6 +150,17 @@ namespace Hazel {
 					}
 					ImGui::Checkbox("FixedAspectRatio", &cameraComponent.FixedAspectRatio);
 				}
+
+				ImGui::TreePop();
+			}
+		}
+
+		if (entity.HasComponent<SpriteRendererComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(SpriteRendererComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Sprite Renderer"))
+			{
+				auto& src = entity.GetComponent<SpriteRendererComponent>();
+				ImGui::ColorEdit4("Color", glm::value_ptr(src.Color));
 
 				ImGui::TreePop();
 			}
