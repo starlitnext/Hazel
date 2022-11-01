@@ -4,6 +4,7 @@
 
 #include "Hazel/Renderer/Renderer2D.h"
 #include "Hazel/Scene/Components.h"
+#include "Hazel/Scene/ScriptableEntity.h"
 
 #include <glm/glm.hpp>
 
@@ -29,6 +30,23 @@ namespace Hazel {
 
 	void Scene::OnUpdate(TimeStep ts)
 	{
+		// Update Scripts
+		{
+			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc) 
+			{
+				// TODO: Move to Scene::OnScenePlay
+				if (!nsc.Instance)
+				{
+					nsc.Instance = nsc.InstantiateScript();
+					nsc.Instance->m_Entity = Entity{ entity, this };
+					nsc.Instance->OnCreate();
+				}
+
+				nsc.Instance->OnUpdate(ts);
+			});
+
+		}
+
 		// Render 2D
 		Camera* mainCamera = nullptr;
 		glm::mat4* cameraTransform = nullptr;
@@ -36,7 +54,7 @@ namespace Hazel {
 			auto view = m_Registry.view<TransformComponent, CameraComponent>();
 			for (auto entity : view)
 			{
-				auto& [transform, camera] = view.get(entity);
+				auto [transform, camera] = view.get(entity);
 				if (camera.Primary)
 				{
 					mainCamera = &camera.Camera;
@@ -53,7 +71,7 @@ namespace Hazel {
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
 			{
-				auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 				Renderer2D::DrawQuad(transform, sprite.Color);
 			}
 
