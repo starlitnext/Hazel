@@ -17,6 +17,11 @@ namespace Hazel {
 		virtual void OnImGuiRender() override;
 		virtual void OnEvent(Event& event) override;
 	private:
+		bool OnKeyPressed(KeyPressedEvent& e);
+		void NewScene();
+		void OpenScene();
+		void SaveSceneAs();
+	private:
 		Ref<Texture2D> m_CheckboardTexture;
 
 		Ref<Framebuffer> m_Framebuffer;
