@@ -149,6 +149,12 @@ project "Sandbox"
 		"Hazel"
 	}
 
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
+
 	filter "system:windows"
 		systemversion "latest"
 
@@ -201,6 +207,12 @@ project "Hazelnut"
 	{
 		"Hazel"
 	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
 
 	filter "system:windows"
 		systemversion "latest"
