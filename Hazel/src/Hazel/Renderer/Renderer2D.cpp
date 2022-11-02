@@ -161,16 +161,19 @@ namespace Hazel {
 
 	void Renderer2D::Flush()
 	{
-		uint32_t dataSize = (uint32_t)((uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase);
-		s_Data.QuadVertexBuffer->SetData(s_Data.QuadVertexBufferBase, dataSize);
+		if (s_Data.QuadIndexCount)
+		{
+			uint32_t dataSize = (uint32_t)((uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase);
+			s_Data.QuadVertexBuffer->SetData(s_Data.QuadVertexBufferBase, dataSize);
 
-		// Bind Textures
-		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
-			s_Data.TextureSlots[i]->Bind(i);
+			// Bind Textures
+			for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
+				s_Data.TextureSlots[i]->Bind(i);
 
-		s_Data.TextureShader->Bind();
-		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
-		s_Data.Stats.DrawCalls++;
+			s_Data.TextureShader->Bind();
+			RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
+			s_Data.Stats.DrawCalls++;
+		}
 	}
 
 	void Renderer2D::DrawQuadImp(const glm::mat4& transform, const glm::vec4& color, const glm::vec2* textureCoords, float textureIndex, float tilingFactor)

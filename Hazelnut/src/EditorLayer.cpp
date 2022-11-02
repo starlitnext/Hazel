@@ -9,7 +9,7 @@
 namespace Hazel {
 
 	EditorLayer::EditorLayer() :
-		Layer("Sandbox2D"), m_CameraController(1280.f / 720.f)
+		Layer("Sandbox2D")
 	{
 
 	}
@@ -33,8 +33,6 @@ namespace Hazel {
 
 		auto redSquare = m_ActiveScene->CreateEntity("Red Square");
 		redSquare.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
-
-		m_SquareEntity = square;
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera A");
 		m_CameraEntity.AddComponent<CameraComponent>();
@@ -90,14 +88,8 @@ namespace Hazel {
 			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
-
-		// Update
-		if (m_ViewportFocused && m_ViewPortHovered)
-			m_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();
@@ -219,7 +211,6 @@ namespace Hazel {
 
 	void EditorLayer::OnEvent(Event& event)
 	{
-		m_CameraController.OnEvent(event);
 	}
 
 } // namespace Hazel
