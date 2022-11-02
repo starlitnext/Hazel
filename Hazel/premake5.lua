@@ -49,17 +49,13 @@ project "Hazel"
 	filter "files:vendor/ImGuizmo/**.cpp"
 	flags {"NoPCH"}
 
-	defines
-	{
-		"_CRT_SECURE_NO_WARNINGS",
-		"YAML_CPP_STATIC_DEFINE"
-	}
-
 	filter "system:windows"
 		systemversion "latest"
 
 		defines
 		{
+			"_CRT_SECURE_NO_WARNINGS",
+			"YAML_CPP_STATIC_DEFINE",
 			"HZ_PLATFORM_WINDOWS",
 			"HZ_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"

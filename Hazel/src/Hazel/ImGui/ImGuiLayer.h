@@ -5,6 +5,7 @@
 #include "Hazel/Events/KeyEvent.h"
 #include "Hazel/Events/MouseEvent.h"
 
+#include <imgui.h>
 #include "ImGuizmo.h"
 
 namespace Hazel {

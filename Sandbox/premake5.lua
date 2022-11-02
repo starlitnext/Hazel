@@ -20,6 +20,7 @@ project "Sandbox"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.entt}",
+		"%{IncludeDir.ImGuizmo}",
 	}
 
 	links
@@ -27,17 +28,12 @@ project "Sandbox"
 		"Hazel"
 	}
 
-	defines
-	{
-		"_CRT_SECURE_NO_WARNINGS"
-	}
-
-
 	filter "system:windows"
 		systemversion "latest"
 
 		defines
 		{
+			"_CRT_SECURE_NO_WARNINGS",
 			"HZ_PLATFORM_WINDOWS",
 		}
 
